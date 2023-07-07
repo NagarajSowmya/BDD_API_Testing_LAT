@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "8f735b9c-853e-4814-ad0c-21e11f4ad877",
+		"name": "LAT Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "validLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"eval(globals.postmanBDD);\r",
+							"\r",
+							" var jsonData = pm.response.json();\r",
+							"pm.test(\"reposne should contain 200 status code\",()=>{\r",
+							"\r",
+							" pm.expect(jsonData.statusCode).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"describe('',()=>{\r",
+							"\r",
+							"it('should return 200 success response ',()=>{\r",
+							"    response.should.have.status(200);\r",
+							"   \r",
+							"})\r",
+							"it('should return username entered in the request',()=>{\r",
+							"    response.should.have.jsonData.statusCode(200)\r",
+							"    ;\r",
+							"   \r",
+							"})\r",
+							"\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"sowmya\",\r\n  \"password\": \"mypassword\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WithoutUserName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"eval(globals.postmanBDD);\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"\",()=>{\r",
+							" \r",
+							" \r",
+							" pm.expect(jsonData.title).contains(\"One or more validation errors occurred.\");\r",
+							"});\r",
+							"pm.test(\"\",()=>{\r",
+							" var jsonData = pm.response.json();\r",
+							" \r",
+							" pm.expect(jsonData.errors.Username).contains(\"The Username field is required.\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"\",\r\n  \"password\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Without UN&PWD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"\",()=>{\r",
+							" var jsonData = pm.response.json();\r",
+							" \r",
+							" pm.expect(jsonData.title).contains(\"One or more validation errors occurred.\");\r",
+							"});\r",
+							"pm.test(\"\",()=>{\r",
+							" var jsonData = pm.response.json();\r",
+							" \r",
+							" pm.expect(jsonData.errors.Username).contains(\"The Username field is required.\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"\",\r\n  \"password\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Without password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"sowmya\",\r\n  \"password\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BDD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setGlobalVariable('postmanBDD', responseBody);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jamesmessinger.com/postman-bdd/dist/postman-bdd.min.js",
+					"protocol": "https",
+					"host": [
+						"jamesmessinger",
+						"com"
+					],
+					"path": [
+						"postman-bdd",
+						"dist",
+						"postman-bdd.min.js"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
